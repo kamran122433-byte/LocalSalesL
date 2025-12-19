@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Sales Lab - Demo</title>
+    <style>
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .section {
+            min-height: 100vh;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        h1, h2 {
+            color: #4c63d2; /* Dark Blue/Indigo */
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        input, textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #ff7f50; /* Soft Orange */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #e66b3a;
+            transform: translateY(-2px);
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        .problem-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .problem-cards .card {
+            flex: 1 1 200px;
+            min-width: 200px;
+        }
+        .pricing-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .pricing-cards .card {
+            flex: 1 1 250px;
+            min-width: 250px;
+        }
+        .certificate {
+            background: linear-gradient(135deg, #f5f5f5, #e9ecef);
+            padding: 40px;
+            border: 2px solid #4c63d2;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+        }
+        .certificate::before {
+            content: "Local Sales Lab";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 50px;
+            color: rgba(76, 99, 210, 0.1);
+            z-index: -1;
+        }
+        .stamp {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #4c63d2;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 20px;
+            position: relative;
+        }
+        .stamp::after {
+            content: "Local Sales Lab – Certified";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            text-align: center;
+        }
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .badges .card {
+            flex: 1 1 150px;
+            min-width: 150px;
+        }
+        .use-cases {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .use-cases .card {
+            flex: 1 1 200px;
+            min-width: 200px;
+        }
+        .how-it-works {
+            text-align: left;
+            max-width: 600px;
+        }
+        .how-it-works ol {
+            padding-left: 20px;
+        }
+        .footer {
+            background-color: #e9ecef;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 10px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .problem-cards, .pricing-cards, .badges, .use-cases {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section 1: Hero / Intro -->
+    <section id="hero" class="section">
+        <div class="container">
+            <h1>Local Sales Lab</h1>
+            <p>Practice real sales pitching. Gain confidence. Earn experience.</p>
+            <input type="text" id="studentName" placeholder="Enter your name">
+            <input type="text" id="course" placeholder="Enter your course">
+            <input type="text" id="academicYear" placeholder="Enter your academic year">
+            <button onclick="startPractice()">Start Pitch Practice</button>
+        </div>
+    </section>
+
+    <!-- Section 2: Why Local Sales Lab -->
+    <section id="why" class="section">
+        <div class="container">
+            <h2>Why Local Sales Lab?</h2>
+            <div class="problem-cards">
+                <div class="card">No time for sales jobs</div>
+                <div class="card">Fear of customer rejection</div>
+                <div class="card">No practical sales exposure</div>
+                <div class="card">No proof of experience</div>
+            </div>
+            <p>We don’t teach sales. We simulate it.</p>
+        </div>
+    </section>
+
+    <!-- Section 3: Pitch Practice -->
+    <section id="pitch" class="section">
+        <div class="container">
+            <h2>Pitch Your Product</h2>
+            <textarea id="pitchText" placeholder="Good afternoon, my name is Kamran Khan. Our company has launched a new product..."></textarea>
+            <button onclick="submitPitch()">Submit Pitch</button>
+        </div>
+    </section>
+
+    <!-- Section 4: AI Customer Objections -->
+    <section id="objection" class="section">
+        <div class="container">
+            <h2>AI Customer Objection</h2>
+            <div class="card" id="objectionText"></div>
+        </div>
+    </section>
+
+    <!-- Section 5: Student Response -->
+    <section id="response" class="section">
+        <div class="container">
+            <h2>Your Response</h2>
+            <textarea id="responseText" placeholder="Type your response to handle the objection"></textarea>
+            <button onclick="submitResponse()">Submit Response</button>
+        </div>
+    </section>
+
+    <!-- Section 6: AI Feedback & Performance -->
+    <section id="feedback" class="section">
+        <div class="container">
+            <h2>AI Feedback & Performance</h2>
+            <div class="card">
+                <p>Confidence: <span id="confidence"></span></p>
+                <p>Communication: <span id="communication"></span></p>
+                <p>Objection Handling: <span id="handling"></span></p>
+            </div>
+            <div class="card">
+                <p>Confidence Score: <span id="confScore"></span>%</p>
+                <p>Communication Score: <span id="commScore"></span>%</p>
+                <p>Objection Handling Score: <span id="handleScore"></span>%</p>
+            </div>
+            <p>Good attempt. Focus on confidence and value.</p>
+        </div>
+    </section>
+
+    <!-- Section 7: Gamification & Sales Tip -->
+    <section id="gamification" class="section">
+        <div class="container">
+            <h2>Gamification & Sales Tip</h2>
+            <div class="badges">
+                <div class="card">First Pitch Completed</div>
+                <div class="card">Objection Handler</div>
+                <div class="card">Confident Speaker</div>
+            </div>
+            <div class="card">People don’t buy products. They buy solutions.</div>
+        </div>
+    </section>
+
+    <!-- Section 8: Certificate Generation -->
+    <section id="certificate" class="section">
+        <div class="container">
+            <h2>Your Certificate</h2>
+            <div class="certificate">
+                <h3>Certificate of Sales Pitch Experience</h3>
+                <p>This is to certify that</p>
+                <p id="certName"></p>
+                <p>student of <span id="certCourse"></span>, <span id="certYear"></span>,</p>
+                <p>has successfully completed sales pitch practice at Local Sales Lab.</p>
+                <p>Date: <span id="certDate"></span></p>
+                <p>Certificate ID: <span id="certID"></span></p>
+                <p>Issued by Local Sales Lab</p>
+                <div class="stamp"></div>
+                <p>Authorized Trainer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Subscription & Revenue Model -->
+    <section id="subscription" class="section">
+        <div class="container">
+            <h2>Subscription Plans</h2>
+            <div class="pricing-cards">
+                <div class="card">
+                    <h3>Free Plan</h3>
+                    <p>Limited pitch practice</p>
+                    <p>Basic feedback</p>
+                </div>
+                <div class="card">
+                    <h3>Student Pro – ₹199/month</h3>
+                    <p>Unlimited pitch practice</p>
+                    <p>Advanced feedback</p>
+                    <p>Certificates</p>
+                    <p>Performance tracking</p>
+                </div>
+                <div class="card">
+                    <h3>Institution Plan</h3>
+                    <p>Bulk student access</p>
+                    <p>Custom training</p>
+                </div>
+            </div>
+            <p>Revenue is generated through affordable student subscriptions.</p>
+        </div>
+    </section>
+
+    <!-- Section 10: Use Cases -->
+    <section id="use-cases" class="section">
+        <div class="container">
+            <h2>Use Cases</h2>
+            <div class="use-cases">
+                <div class="card">College Students</div>
+                <div class="card">Working Professionals</div>
+                <div class="card">Startup Interns</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: About Us -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Local Sales Lab bridges the gap between classroom learning and real-world sales experience.</p>
+        </div>
+    </section>
+
+    <!-- Section 12: How It Works -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="how-it-works">
+                <ol>
+                    <li>Enter your details</li>
+                    <li>Pitch your product</li>
+                    <li>Handle customer objections</li>
+                    <li>Get AI feedback</li>
+                    <li>Earn certificate</li>
+                    <li>Upgrade via subscription</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Call to Action -->
+    <section id="cta" class="section">
+        <div class="container">
+            <h2>Become Sales Ready Before Your Job</h2>
+            <button>Start Pro Trial (Demo)</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Made by Kamran Khan<br>
+        For more info contact WhatsApp: 8591058598
+    </footer>
+
+    <script>
+        let studentData = {};
+
+        const objections = [
+            "Not interested.", "I am busy right now.", "Tell me quickly.", "Send details on WhatsApp.",
+            "What is the price?", "I already use another brand.", "Why should I trust you?", "Is there any discount?",
+            "I don’t need this.", "Convince me.", "You have one minute.", "Explain in one line.",
+            "Sounds interesting, go on.", "I’m not the decision maker.", "How is this better?",
+            "I had a bad experience earlier.", "Can you come later?", "I am skeptical.", "What problem does it solve?", "Why now?"
+        ];
+
+        const confidenceLevels = ["Low", "Medium", "High"];
+        const communicationLevels = ["Average", "Good", "Excellent"];
+        const handlingLevels = ["Weak", "Good", "Strong"];
+
+        function startPractice() {
+            studentData.name = document.getElementById('studentName').value;
+            studentData.course = document.getElementById('course').value;
+            studentData.year = document.getElementById('academicYear').value;
+            document.getElementById('pitch').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitPitch() {
+            // Simulate moving to objection
+            document.getElementById('objectionText').innerText = objections[Math.floor(Math.random() * objections.length)];
+            document.getElementById('objection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitResponse() {
+            // Generate feedback
+            document.getElementById('confidence').innerText = confidenceLevels[Math.floor(Math.random() * 3)];
+            document.getElementById('communication').innerText = communicationLevels[Math.floor(Math.random() * 3)];
+            document.getElementById('handling').innerText = handlingLevels[Math.floor(Math.random() * 3)];
+            document.getElementById('confScore').innerText = Math.floor(Math.random() * 100);
+            document.getElementById('commScore').innerText = Math.floor(Math.random() * 100);
+            document.getElementById('handleScore').innerText = Math.floor(Math.random() * 100);
+
+            // Populate certificate
+            document.getElementById('certName').innerText = studentData.name;
+            document.getElementById('certCourse').innerText = studentData.course;
+            document.getElementById('certYear').innerText = studentData.year;
+            document.getElementById('certDate').innerText = new Date().toLocaleDateString();
+            document.getElementById('certID').innerText = Math.floor(Math.random() * 1000000);
+
+            document.getElementById('feedback').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
